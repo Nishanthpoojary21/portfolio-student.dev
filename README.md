@@ -4,5 +4,5 @@ The site has six main sections: an Introduction with a bio focused on LLMs, Gene
 
 The portfolio is responsive, supports light/dark theme toggling, and includes smooth-scroll navigation. A standalone HTML version and downloadable ZIP are available for easy hosting on GitHub Pages, Netlify, or Vercel.
 
-That's the brief version. Want me to make it even shorter, or use it somewhere specific (like a GitHub repo description or a LinkedIn post)?
+
 
