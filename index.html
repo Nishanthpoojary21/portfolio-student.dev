@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" style="scroll-behavior:smooth;scroll-padding-top:5rem">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nishanth — CSE (AI & ML) Student Portfolio</title>
+<meta name="description" content="Portfolio of Nishanth, a CSE (AI & ML) student. Introduction, education, syllabus, and a live Matrix ASCII rain mini project.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        card: 'var(--card)',
+        'card-foreground': 'var(--card-foreground)',
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
+        muted: 'var(--muted)',
+        'muted-foreground': 'var(--muted-foreground)',
+        primary: 'var(--primary)',
+        'primary-foreground': 'var(--primary-foreground)',
+        secondary: 'var(--secondary)',
+        'secondary-foreground': 'var(--secondary-foreground)',
+        accent: 'var(--accent)',
+        'accent-foreground': 'var(--accent-foreground)',
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+}
+* { border-color: var(--border); }
+body { background-color: var(--background); color: var(--foreground); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.accent-emerald { color: oklch(0.696 0.17 162.48); }
+.bg-accent-emerald { background-color: oklch(0.696 0.17 162.48); }
+.border-accent-emerald { border-color: oklch(0.696 0.17 162.48); }
+@keyframes fadeInUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+.fade-in { animation: fadeInUp 0.5s ease-out forwards; }
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+.pulse { animation: pulse 2s infinite; }
+input[type="range"] { -webkit-appearance:none; appearance:none; height:4px; border-radius:2px; background: var(--input); outline:none; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:16px; height:16px; border-radius:50%; background: var(--primary); cursor:pointer; }
+input[type="range"]::-moz-range-thumb { width:16px; height:16px; border-radius:50%; background: var(--primary); cursor:pointer; border:none; }
+</style>
+</head>
+<body class="bg-background text-foreground min-h-screen flex flex-col">
+
+<!-- ─────────────────────── NAV ─────────────────────── -->
+<header class="sticky top-0 z-40 w-full border-b border-border/60 backdrop-blur" style="background-color:color-mix(in oklch, var(--background) 80%, transparent)">
+  <nav class="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6" aria-label="Primary">
+    <a href="#top" class="flex items-center gap-2 text-sm font-semibold tracking-tight">
+      <span class="inline-flex h-7 w-7 items-center justify-center rounded-md bg-accent-emerald text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
+      </span>
+      <span class="hidden sm:inline">student.dev</span>
+    </a>
+    <div class="flex items-center gap-1">
+      <a href="#about" class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">Intro</a>
+      <a href="#syllabus" class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">Syllabus</a>
+      <a href="#project" class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">Project</a>
+      <span class="mx-2 h-6 w-px bg-border"></span>
+      <button id="theme-toggle" class="rounded-md p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="Toggle theme">
+        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top" class="flex-1">
+
+<!-- ─────────────────────── INTRODUCTION ─────────────────────── -->
+<section id="about" class="mx-auto w-full max-w-5xl scroll-mt-20 px-4 py-20 sm:px-6">
+  <div class="max-w-2xl space-y-5 fade-in">
+    <div class="space-y-2">
+      <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Nishanth</h1>
+      <p class="text-xl text-muted-foreground sm:text-2xl">CSE (AI &amp; ML) Student</p>
+      <p class="text-lg font-medium accent-emerald sm:text-xl">Curious mind. Passion for code. Fascinated by AI.</p>
+    </div>
+    <p class="text-base leading-relaxed text-muted-foreground">I'm Nishanth, a Computer Science Engineering student specializing in Artificial Intelligence and Machine Learning (CSE-AIML). I'm passionate about exploring the intersection of intelligent systems and software development — where models meet the engineering that ships them.</p>
+    <p class="text-base leading-relaxed text-muted-foreground">I am particularly fascinated by Large Language Models (LLMs), Generative AI, and the rapidly evolving world of artificial intelligence. Alongside AI, I enjoy traditional programming and software development: solving problems, building applications, and turning ideas into working solutions.</p>
+    <p class="text-base leading-relaxed text-muted-foreground">I believe the future belongs to those who understand both how to build intelligent systems and how to engineer the technology behind them. I am constantly learning, experimenting with new technologies, and sharpening my creativity and technical skills.</p>
+  </div>
+</section>
+
+<!-- ─────────────────────── EDUCATION ─────────────────────── -->
+<section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6">
+  <div class="mb-6 flex flex-col gap-3">
+    <span class="inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      Academic journey
+    </span>
+    <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Education</h2>
+    <p class="max-w-2xl text-sm text-muted-foreground">From school in Udupi to engineering college in Mangalore — here's my academic path so far.</p>
+  </div>
+  <div class="relative ml-3 border-l border-border/60 pl-6">
+    <!-- MITE -->
+    <div class="relative pb-6">
+      <div class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-emerald-500 bg-emerald-500"></div>
+      <div class="rounded-lg border border-border/60 bg-card p-4">
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <div class="min-w-0 flex-1">
+            <div class="flex flex-wrap items-baseline gap-x-2">
+              <h3 class="font-semibold leading-tight">Mangalore Institute of Technology &amp; Engineering</h3>
+              <span class="text-xs font-medium text-muted-foreground">(MITE)</span>
+            </div>
+            <p class="mt-0.5 text-sm text-muted-foreground">B.E. — Computer Science &amp; Engineering (AI &amp; ML)</p>
+          </div>
+          <span class="shrink-0 font-mono text-xs text-muted-foreground">2026 — Present</span>
+        </div>
+        <div class="mt-2 text-xs text-muted-foreground">Mangalore</div>
+        <div class="mt-3 flex items-center gap-2">
+          <span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">Status: 1st Semester · Ongoing</span>
+          <span class="inline-flex items-center gap-1 text-[10px] text-muted-foreground">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500 pulse"></span> Current
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- Karnataka Public School -->
+    <div class="relative pb-6">
+      <div class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-muted-foreground/40 bg-background"></div>
+      <div class="rounded-lg border border-border/60 bg-card p-4">
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <div class="min-w-0 flex-1">
+            <h3 class="font-semibold leading-tight">Karnataka Public School</h3>
+            <p class="mt-0.5 text-sm text-muted-foreground">PUC (12th) — PCMC</p>
+          </div>
+          <span class="shrink-0 font-mono text-xs text-muted-foreground">2024 — 2026</span>
+        </div>
+        <div class="mt-2 text-xs text-muted-foreground">Karnataka PUE Board · Brahmavara</div>
+        <div class="mt-3">
+          <span class="inline-flex items-center gap-1 rounded-full border border-border bg-secondary px-2 py-0.5 text-[10px] font-medium">Percentage: 95.17%</span>
+        </div>
+      </div>
+    </div>
+    <!-- Sharda High School -->
+    <div class="relative pb-0">
+      <div class="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-muted-foreground/40 bg-background"></div>
+      <div class="rounded-lg border border-border/60 bg-card p-4">
+        <div class="flex flex-wrap items-start justify-between gap-2">
+          <div class="min-w-0 flex-1">
+            <h3 class="font-semibold leading-tight">Sharda High School</h3>
+            <p class="mt-0.5 text-sm text-muted-foreground">SSLC (10th Standard)</p>
+          </div>
+          <span class="shrink-0 font-mono text-xs text-muted-foreground">2024</span>
+        </div>
+        <div class="mt-2 text-xs text-muted-foreground">Karnataka State Board · Brahmavara, Udupi</div>
+        <div class="mt-3">
+          <span class="inline-flex items-center gap-1 rounded-full border border-border bg-secondary px-2 py-0.5 text-[10px] font-medium">Percentage: 89.92%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── CURRENTLY LEARNING ─────────────────────── -->
+<section class="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6">
+  <div class="mb-6 flex flex-col gap-3">
+    <span class="inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      In progress
+    </span>
+    <h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Currently Learning</h2>
+    <p class="max-w-2xl text-sm text-muted-foreground">What I'm actively studying alongside my semester coursework — building the foundations for AI/ML one topic at a time.</p>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="rounded-lg border border-border/60 bg-card p-4 transition-shadow hover:shadow-md">
+      <div class="mb-3 flex items-center justify-between">
+        <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <span class="inline-block h-2 w-2 rounded-full bg-emerald-500 pulse"></span>
+      </div>
+      <p class="text-sm font-semibold leading-tight">C Programming</p>
+      <p class="mt-1 text-xs text-muted-foreground">Syntax, pointers, memory management</p>
+    </div>
+    <div class="rounded-lg border border-border/60 bg-card p-4 transition-shadow hover:shadow-md">
+      <div class="mb-3 flex items-center justify-between">
+        <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
+        <span class="inline-block h-2 w-2 rounded-full bg-emerald-500 pulse"></span>
+      </div>
+      <p class="text-sm font-semibold leading-tight">DSA in C</p>
+      <p class="mt-1 text-xs text-muted-foreground">Arrays, linked lists, trees, sorting</p>
+    </div>
+    <div class="rounded-lg border border-border/60 bg-card p-4 transition-shadow hover:shadow-md">
+      <div class="mb-3 flex items-center justify-between">
+        <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg></div>
+        <span class="inline-block h-2 w-2 rounded-full bg-emerald-500 pulse"></span>
+      </div>
+      <p class="text-sm font-semibold leading-tight">SQL</p>
+      <p class="mt-1 text-xs text-muted-foreground">Queries, joins, schema design</p>
+    </div>
+    <div class="rounded-lg border border-border/60 bg-card p-4 transition-shadow hover:shadow-md">
+      <div class="mb-3 flex items-center justify-between">
+        <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg></div>
+        <span class="inline-block h-2 w-2 rounded-full bg-emerald-500 pulse"></span>
+      </div>
+      <p class="text-sm font-semibold leading-tight">Python</p>
+      <p class="mt-1 text-xs text-muted-foreground">Scripting for ML and AI</p>
+    </div>
+  </div>
+</section>
+
+<div class="mx-auto h-px w-full max-w-5xl bg-border"></div>
+
+<!-- ─────────────────────── SYLLABUS ─────────────────────── -->
+<section id="syllabus" class="mx-auto w-full max-w-5xl scroll-mt-20 px-4 py-20 sm:px-6">
+  <div class="mb-8 flex flex-col gap-3">
+    <span class="inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      1st Semester · Current
+    </span>
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Syllabus</h2>
+    <p class="max-w-2xl text-muted-foreground">My current semester coursework at Mangalore Institute of Technology &amp; Engineering (MITE) — 7 foundational courses, 20 credits total, across Basic Science, Engineering Science, and Humanities streams.</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="rounded-lg border border-border/60 bg-card p-4 flex items-center gap-3">
+      <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div>
+      <div><p class="text-xs text-muted-foreground">Semester</p><p class="text-lg font-semibold leading-tight">1st Semester</p><p class="text-[11px] text-muted-foreground">Current</p></div>
+    </div>
+    <div class="rounded-lg border border-border/60 bg-card p-4 flex items-center gap-3">
+      <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+      <div><p class="text-xs text-muted-foreground">Institution</p><p class="text-lg font-semibold leading-tight">MITE</p><p class="text-[11px] text-muted-foreground">Mangalore</p></div>
+    </div>
+    <div class="rounded-lg border border-border/60 bg-card p-4 flex items-center gap-3">
+      <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+      <div><p class="text-xs text-muted-foreground">Courses</p><p class="text-lg font-semibold leading-tight">7</p><p class="text-[11px] text-muted-foreground">Across 3 streams</p></div>
+    </div>
+    <div class="rounded-lg border border-border/60 bg-card p-4 flex items-center gap-3">
+      <div class="rounded-md bg-emerald-500/10 p-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/></svg></div>
+      <div><p class="text-xs text-muted-foreground">Total credits</p><p class="text-lg font-semibold leading-tight">20</p><p class="text-[11px] text-muted-foreground">BSC 7 · ESC 12 · HM 1</p></div>
+    </div>
+  </div>
+
+  <!-- Credit distribution -->
+  <div class="mb-6">
+    <div class="rounded-lg border border-border/60 bg-card p-4">
+      <div class="mb-2 flex items-center justify-between">
+        <p class="text-xs font-medium uppercase tracking-wider text-muted-foreground">Credit distribution by stream</p>
+        <p class="text-xs text-muted-foreground">20 credits total</p>
+      </div>
+      <div class="flex h-3 w-full overflow-hidden rounded-full bg-muted" role="img" aria-label="Credit distribution: BSC 7, ESC 12, HM 1">
+        <div class="bg-emerald-500" style="width:35%" title="Basic Science: 7 credits"></div>
+        <div class="bg-orange-500" style="width:60%" title="Engineering Science: 12 credits"></div>
+        <div class="bg-purple-500" style="width:5%" title="Humanities & Management: 1 credit"></div>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-xs">
+        <div class="flex items-center gap-1.5"><span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span><span class="font-medium">BSC</span><span class="text-muted-foreground">Basic Science · 7 cr</span></div>
+        <div class="flex items-center gap-1.5"><span class="inline-block h-2 w-2 rounded-full bg-orange-500"></span><span class="font-medium">ESC</span><span class="text-muted-foreground">Engineering Science · 12 cr</span></div>
+        <div class="flex items-center gap-1.5"><span class="inline-block h-2 w-2 rounded-full bg-purple-500"></span><span class="font-medium">HM</span><span class="text-muted-foreground">Humanities &amp; Management · 1 cr</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course table -->
+  <div class="hidden overflow-hidden rounded-lg border border-border md:block">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr class="border-b border-border bg-muted/40">
+          <th class="w-[120px] px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Code</th>
+          <th class="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Course Name</th>
+          <th class="w-[80px] px-4 py-2.5 text-center text-xs font-semibold text-muted-foreground">Credits</th>
+          <th class="w-[180px] px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Stream</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-border/50"><td class="px-4 py-3 font-mono text-xs font-medium align-top">26BSCC102</td><td class="px-4 py-3 font-medium align-top">Linear Algebra &amp; Differential Equations</td><td class="px-4 py-3 text-center align-top"><span class="inline-block rounded-full bg-secondary px-2 py-0.5 font-mono text-xs">4</span></td><td class="px-4 py-3 align-top"><span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-600 dark:text-emerald-400">BSC · Basic Science</span></td></tr>
+        <tr class="border-b border-border/50"><td class="px-4 py-3 font-mono text-xs font-medium align-top">26BSCC110</td><td class="px-4 py-3 font-medium align-top">Engineering Chemistry</td><td class="px-4 py-3 text-center align-top"><span class="inline-block rounded-full bg-secondary px-2 py-0.5 font-mono text-xs">3</span></td><td class="px-4 py-3 align-top"><span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-600 dark:text-emerald-400">BSC · Basic Science</span></td></tr>
+        <tr class="border-b border-border/50"><td class="px-4 py-3 font-mono text-xs font-medium align-top">26ESCC111</td><td class="px-4 py-3 font-medium align-top">Computational Thinking &amp; Programming</td><td class="px-4 py-3 text-center align-top"><span class="inline-block rounded-full bg-secondary px-2 py-0.5 font-mono text-xs">4</span></td><td class="px-4 py-3 align-top"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></td></tr>
+        <tr class="border-b border-border/50"><td class="px-4 py-3 font-mono text-xs font-medium align-top">26ESCC112</td><td class="px-4 py-3 font-medium align-top">Fundamentals of Electrical Engineering</td><td class="px-4 py-3 text-center align-top"><span class="inline-block rounded-full bg-secondary px-2 py-0.5 font-mono text-xs">3</span></td><td class="px-4 py-3 align-top"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></td></tr>
+        <tr class="border-b border-border/50"><td class="px-4 py-3 font-mono text-xs font-medium align-top">26ESCC113</td><td class="px-4 py-3 font-medium align-top">Engineering Graphics</td><td class="px-4 py-3 text-center align-top"><span class="inline-block rounded-full bg-secondary px-2 py-0.5 font-mono text-xs">3</span></td><td class="px-4 py-3 align-top"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></td></tr>
+        <tr class="border-b border-border/50"><td class="px-4 py-3 font-mono text-xs font-medium align-top">26ESCC114</td><td class="px-4 py-3 font-medium align-top">Design Thinking</td><td class="px-4 py-3 text-center align-top"><span class="inline-block rounded-full bg-secondary px-2 py-0.5 font-mono text-xs">2</span></td><td class="px-4 py-3 align-top"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></td></tr>
+        <tr><td class="px-4 py-3 font-mono text-xs font-medium align-top">26HMCC115</td><td class="px-4 py-3 font-medium align-top">Professional Communication</td><td class="px-4 py-3 text-center align-top"><span class="inline-block rounded-full bg-secondary px-2 py-0.5 font-mono text-xs">1</span></td><td class="px-4 py-3 align-top"><span class="inline-flex items-center gap-1 rounded-full border border-purple-500/30 bg-purple-500/10 px-2 py-0.5 font-mono text-[10px] text-purple-600 dark:text-purple-400">HM · Humanities &amp; Management</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mobile cards -->
+  <div class="grid gap-3 md:hidden">
+    <div class="rounded-lg border border-border/60 bg-card p-4"><div class="mb-2 flex items-center justify-between gap-2"><span class="font-mono text-xs font-medium text-muted-foreground">26BSCC102</span><span class="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px]">4 cr</span></div><p class="text-sm font-medium leading-snug">Linear Algebra &amp; Differential Equations</p><div class="mt-2"><span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-600 dark:text-emerald-400">BSC · Basic Science</span></div></div>
+    <div class="rounded-lg border border-border/60 bg-card p-4"><div class="mb-2 flex items-center justify-between gap-2"><span class="font-mono text-xs font-medium text-muted-foreground">26BSCC110</span><span class="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px]">3 cr</span></div><p class="text-sm font-medium leading-snug">Engineering Chemistry</p><div class="mt-2"><span class="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] text-emerald-600 dark:text-emerald-400">BSC · Basic Science</span></div></div>
+    <div class="rounded-lg border border-border/60 bg-card p-4"><div class="mb-2 flex items-center justify-between gap-2"><span class="font-mono text-xs font-medium text-muted-foreground">26ESCC111</span><span class="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px]">4 cr</span></div><p class="text-sm font-medium leading-snug">Computational Thinking &amp; Programming</p><div class="mt-2"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></div></div>
+    <div class="rounded-lg border border-border/60 bg-card p-4"><div class="mb-2 flex items-center justify-between gap-2"><span class="font-mono text-xs font-medium text-muted-foreground">26ESCC112</span><span class="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px]">3 cr</span></div><p class="text-sm font-medium leading-snug">Fundamentals of Electrical Engineering</p><div class="mt-2"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></div></div>
+    <div class="rounded-lg border border-border/60 bg-card p-4"><div class="mb-2 flex items-center justify-between gap-2"><span class="font-mono text-xs font-medium text-muted-foreground">26ESCC113</span><span class="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px]">3 cr</span></div><p class="text-sm font-medium leading-snug">Engineering Graphics</p><div class="mt-2"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></div></div>
+    <div class="rounded-lg border border-border/60 bg-card p-4"><div class="mb-2 flex items-center justify-between gap-2"><span class="font-mono text-xs font-medium text-muted-foreground">26ESCC114</span><span class="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px]">2 cr</span></div><p class="text-sm font-medium leading-snug">Design Thinking</p><div class="mt-2"><span class="inline-flex items-center gap-1 rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[10px] text-orange-600 dark:text-orange-400">ESC · Engineering Science</span></div></div>
+    <div class="rounded-lg border border-border/60 bg-card p-4"><div class="mb-2 flex items-center justify-between gap-2"><span class="font-mono text-xs font-medium text-muted-foreground">26HMCC115</span><span class="rounded-full bg-secondary px-2 py-0.5 font-mono text-[10px]">1 cr</span></div><p class="text-sm font-medium leading-snug">Professional Communication</p><div class="mt-2"><span class="inline-flex items-center gap-1 rounded-full border border-purple-500/30 bg-purple-500/10 px-2 py-0.5 font-mono text-[10px] text-purple-600 dark:text-purple-400">HM · Humanities &amp; Management</span></div></div>
+  </div>
+</section>
+
+<div class="mx-auto h-px w-full max-w-5xl bg-border"></div>
+
+<!-- ─────────────────────── PROJECT ─────────────────────── -->
+<section id="project" class="mx-auto w-full max-w-5xl scroll-mt-20 px-4 py-20 sm:px-6">
+  <div class="mb-8 flex flex-col gap-3">
+    <span class="inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Mini project · live demo
+    </span>
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Matrix ASCII Rain</h2>
+    <p class="max-w-2xl text-muted-foreground">A self-contained tribute to the iconic digital rain from <em>The Matrix</em> (1999) — cascading green glyphs rendered on HTML5 Canvas with <code class="rounded bg-muted px-1 py-0.5 font-mono text-xs">requestAnimationFrame</code>, no external libraries.</p>
+  </div>
+
+  <div class="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+    <!-- Canvas + controls -->
+    <div>
+      <div id="matrix-container" class="relative w-full overflow-hidden rounded-lg border border-border bg-black">
+        <canvas id="matrix-canvas" class="block w-full"></canvas>
+        <div class="pointer-events-none absolute left-3 top-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-wider text-emerald-400/80">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400 pulse"></span>
+          <span id="status-label">streaming</span>
+        </div>
+        <div class="pointer-events-none absolute right-3 top-3 font-mono text-[10px] uppercase tracking-wider text-emerald-400/60">
+          cols: <span id="cols-label">0</span> · fps: <span id="fps-label">0</span>
+        </div>
+      </div>
+      <div class="mt-4 flex flex-col gap-4 rounded-lg border border-border bg-muted/40 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex items-center gap-2">
+          <button id="btn-play" class="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pause
+          </button>
+          <button id="btn-reset" class="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors hover:bg-accent">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Reset
+          </button>
+        </div>
+        <div class="grid flex-1 gap-3 sm:max-w-md sm:grid-cols-2">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label for="speed-slider" class="text-xs font-medium text-muted-foreground">Speed</label>
+              <span class="inline-flex h-5 items-center rounded-full bg-secondary px-1.5 text-[10px]" id="speed-value">45</span>
+            </div>
+            <input type="range" id="speed-slider" min="1" max="100" value="45" class="w-full">
+          </div>
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label for="density-slider" class="text-xs font-medium text-muted-foreground">Font size</label>
+              <span class="inline-flex h-5 items-center rounded-full bg-secondary px-1.5 text-[10px]" id="density-value">55</span>
+            </div>
+            <input type="range" id="density-slider" min="20" max="100" value="55" class="w-full">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schematic + Try it -->
+    <div class="flex flex-col gap-6">
+      <div class="overflow-hidden rounded-lg border border-emerald-500/20 bg-black/90 font-mono text-xs">
+        <div class="border-b border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-[10px] font-semibold uppercase tracking-widest text-emerald-400">Schematic</div>
+        <div class="divide-y divide-emerald-500/10">
+          <div class="px-4 py-2.5"><div class="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-400/70">Canvas</div><div class="space-y-1"><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">Surface</span><span class="text-right text-emerald-100/90">HTML5 Canvas, 2D context</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">DPR</span><span class="text-right text-emerald-100/90">Capped at 2x for retina</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">FPS</span><span class="text-right text-emerald-100/90">~60 (requestAnimationFrame)</span></div></div></div>
+          <div class="px-4 py-2.5"><div class="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-400/70">Columns</div><div class="space-y-1"><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">Count</span><span class="text-right text-emerald-100/90">⌊ width / fontSize ⌋</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">State</span><span class="text-right text-emerald-100/90">{ y: row }</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">Width</span><span class="text-right text-emerald-100/90">1 glyph (fontSize px)</span></div></div></div>
+          <div class="px-4 py-2.5"><div class="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-400/70">Glyphs</div><div class="space-y-1"><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">Set</span><span class="text-right text-emerald-100/90">Katakana + ASCII</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">Head</span><span class="text-right text-emerald-100/90">#d1fadf bright</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">Trail</span><span class="text-right text-emerald-100/90">#22c55e dim</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">Fade</span><span class="text-right text-emerald-100/90">rgba(0,0,0,0.08)/frame</span></div></div></div>
+          <div class="px-4 py-2.5"><div class="mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-emerald-400/70">Loop</div><div class="space-y-1"><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">1</span><span class="text-right text-emerald-100/90">fade overlay</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">2</span><span class="text-right text-emerald-100/90">draw head + trail</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">3</span><span class="text-right text-emerald-100/90">advance y++</span></div><div class="flex items-baseline justify-between gap-3"><span class="text-emerald-400/50">4</span><span class="text-right text-emerald-100/90">reset if off-screen</span></div></div></div>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="mb-2 text-base font-semibold">Try it</h3>
+        <ul class="space-y-1.5 text-sm text-muted-foreground">
+          <li><span class="mr-1 accent-emerald">→</span> Use the Speed slider to slow down or speed up the rain.</li>
+          <li><span class="mr-1 accent-emerald">→</span> Use the Font size slider for denser or larger glyphs.</li>
+          <li><span class="mr-1 accent-emerald">→</span> Pause / Reset to inspect a single frame.</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-wrap gap-2">
+        <a href="https://github.com/Nishanthpoojary21" target="_blank" rel="noreferrer noopener" class="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm font-medium transition-colors hover:bg-accent">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.67 0-1.25.45-2.27 1.19-3.07-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.17a11.1 11.1 0 0 1 5.8 0c2.2-1.48 3.17-1.17 3.17-1.17.63 1.59.23 2.76.11 3.05.74.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.38-5.25 5.66.42.36.79 1.08.79 2.18v3.23c0 .31.21.68.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z"/></svg>
+          Source code
+        </a>
+        <button onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})" class="inline-flex items-center rounded-md px-3 py-1.5 text-sm font-medium transition-colors hover:bg-accent">Back to top</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mx-auto h-px w-full max-w-5xl bg-border"></div>
+
+<!-- ─────────────────────── CONTACT ─────────────────────── -->
+<section id="contact" class="mx-auto w-full max-w-5xl scroll-mt-20 px-4 py-20 sm:px-6">
+  <div class="mb-8 flex flex-col gap-3">
+    <span class="inline-flex w-fit items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Get in touch
+    </span>
+    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Contact</h2>
+    <p class="max-w-2xl text-muted-foreground">Have a question, an opportunity, or just want to talk about AI? My inbox is always open. I'll get back to you as soon as I can.</p>
+  </div>
+  <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <a href="mailto:npoojary21122@gmail.com" class="group rounded-lg border border-border/60 bg-card p-5 transition-all hover:border-emerald-500/30 hover:shadow-md">
+      <div class="mb-3 inline-flex rounded-md bg-emerald-500/10 p-2.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="accent-emerald"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+      <p class="text-xs font-medium uppercase tracking-wider text-muted-foreground">Email</p>
+      <p class="mt-1 break-all text-sm font-medium">npoojary21122@gmail.com</p>
+      <p class="mt-2 text-xs text-muted-foreground">Best for detailed conversations &rarr;</p>
+    </a>
+    <a href="https://github.com/Nishanthpoojary21" target="_blank" rel="noreferrer noopener" class="group rounded-lg border border-border/60 bg-card p-5 transition-all hover:border-emerald-500/30 hover:shadow-md">
+      <div class="mb-3 inline-flex rounded-md bg-emerald-500/10 p-2.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="accent-emerald"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.11-.76.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.67 0-1.25.45-2.27 1.19-3.07-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.17a11.1 11.1 0 0 1 5.8 0c2.2-1.48 3.17-1.17 3.17-1.17.63 1.59.23 2.76.11 3.05.74.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.38-5.25 5.66.42.36.79 1.08.79 2.18v3.23c0 .31.21.68.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5Z"/></svg></div>
+      <p class="text-xs font-medium uppercase tracking-wider text-muted-foreground">GitHub</p>
+      <p class="mt-1 text-sm font-medium">@Nishanthpoojary21</p>
+      <p class="mt-2 text-xs text-muted-foreground">Code, projects &amp; contributions &rarr;</p>
+    </a>
+    <a href="https://www.linkedin.com/in/nishanth-poojary-089850435/" target="_blank" rel="noreferrer noopener" class="group rounded-lg border border-border/60 bg-card p-5 transition-all hover:border-emerald-500/30 hover:shadow-md">
+      <div class="mb-3 inline-flex rounded-md bg-emerald-500/10 p-2.5"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="accent-emerald"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg></div>
+      <p class="text-xs font-medium uppercase tracking-wider text-muted-foreground">LinkedIn</p>
+      <p class="mt-1 text-sm font-medium">Nishanth Poojary</p>
+      <p class="mt-2 text-xs text-muted-foreground">Professional network &amp; updates &rarr;</p>
+    </a>
+  </div>
+  <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
+    <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> CSE (AI &amp; ML) · MITE, Mangalore</span>
+    <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Available for internships &amp; collaborations</span>
+  </div>
+</section>
+
+</main>
+
+<!-- ─────────────────────── FOOTER ─────────────────────── -->
+<footer class="mt-auto border-t border-border/60 bg-muted/20">
+  <div class="mx-auto flex w-full max-w-5xl flex-col gap-3 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
+    <p>© <span id="year"></span> Nishanth · Built with HTML, CSS &amp; JavaScript.</p>
+    <div class="flex items-center gap-3">
+      <a href="https://github.com/Nishanthpoojary21" target="_blank" rel="noreferrer noopener" class="transition-colors hover:text-foreground">GitHub</a>
+      <a href="https://www.linkedin.com/in/nishanth-poojary-089850435/" target="_blank" rel="noreferrer noopener" class="transition-colors hover:text-foreground">LinkedIn</a>
+      <a href="mailto:npoojary21122@gmail.com" class="transition-colors hover:text-foreground">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// ─── Theme toggle ───
+(function() {
+  var html = document.documentElement;
+  var sunIcon = document.getElementById('theme-icon-sun');
+  var moonIcon = document.getElementById('theme-icon-moon');
+  var stored = null;
+  try { stored = localStorage.getItem('theme'); } catch(e) {}
+  if (stored === 'light') {
+    html.classList.remove('dark');
+  } else if (stored === 'dark') {
+    html.classList.add('dark');
+  }
+  function updateIcons() {
+    var isDark = html.classList.contains('dark');
+    sunIcon.style.display = isDark ? '' : 'none';
+    moonIcon.style.display = isDark ? 'none' : '';
+  }
+  updateIcons();
+  document.getElementById('theme-toggle').addEventListener('click', function() {
+    html.classList.toggle('dark');
+    try { localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light'); } catch(e) {}
+    updateIcons();
+  });
+})();
+
+// ─── Matrix Rain ───
+(function() {
+  var canvas = document.getElementById('matrix-canvas');
+  var container = document.getElementById('matrix-container');
+  var ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  var GLYPHS = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆｰﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ0123456789@#$%&*+=<>?/\\|';
+  var drops = [];
+  var columns = 0;
+  var running = true;
+  var speed = 45;
+  var density = 55;
+  var fontSize = 16;
+  var rafId = null;
+  var lastFrame = performance.now();
+  var frameCount = 0;
+  var fpsTimer = performance.now();
+
+  var statusLabel = document.getElementById('status-label');
+  var colsLabel = document.getElementById('cols-label');
+  var fpsLabel = document.getElementById('fps-label');
+
+  function getFontSize() {
+    return Math.max(10, Math.round(28 - (density / 100) * 18));
+  }
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = container.getBoundingClientRect();
+    var cssW = Math.max(200, Math.floor(rect.width));
+    var cssH = 360;
+    canvas.width = Math.floor(cssW * dpr);
+    canvas.height = Math.floor(cssH * dpr);
+    canvas.style.width = cssW + 'px';
+    canvas.style.height = cssH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    fontSize = getFontSize();
+    columns = Math.ceil(cssW / fontSize);
+    if (drops.length === 0) {
+      drops = [];
+      for (var i = 0; i < columns; i++) {
+        drops.push({ y: Math.floor((Math.random() * cssH) / fontSize) });
+      }
+    } else if (drops.length !== columns) {
+      var next = [];
+      for (var i = 0; i < columns; i++) {
+        next.push(drops[i] || { y: 0 });
+      }
+      drops = next;
+    }
+    colsLabel.textContent = columns;
+  }
+
+  function drawFrame() {
+    var fs = fontSize;
+    var cssW = canvas.clientWidth;
+    var cssH = canvas.clientHeight;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillRect(0, 0, cssW, cssH);
+    ctx.font = fs + 'px "JetBrains Mono", ui-monospace, monospace';
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'start';
+    for (var i = 0; i < columns; i++) {
+      var ch = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      var x = i * fs;
+      var y = drops[i].y * fs;
+      ctx.fillStyle = '#d1fadf';
+      ctx.fillText(ch, x, y);
+      if (y - fs >= 0) {
+        ctx.fillStyle = '#22c55e';
+        ctx.fillText(GLYPHS[Math.floor(Math.random() * GLYPHS.length)], x, y - fs);
+      }
+      if (y > cssH && Math.random() > 0.975) {
+        drops[i].y = 0;
+      }
+      drops[i].y++;
+    }
+  }
+
+  function loop(now) {
+    rafId = requestAnimationFrame(loop);
+    var elapsed = now - lastFrame;
+    var interval = 250 - (speed / 100) * (250 - 12);
+    if (elapsed < interval) return;
+    lastFrame = now - (elapsed % interval);
+    if (running) {
+      drawFrame();
+      frameCount++;
+    }
+    if (now - fpsTimer >= 1000) {
+      fpsLabel.textContent = frameCount;
+      frameCount = 0;
+      fpsTimer = now;
+    }
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  rafId = requestAnimationFrame(loop);
+
+  // Controls
+  var btnPlay = document.getElementById('btn-play');
+  var btnReset = document.getElementById('btn-reset');
+  var speedSlider = document.getElementById('speed-slider');
+  var densitySlider = document.getElementById('density-slider');
+  var speedValue = document.getElementById('speed-value');
+  var densityValue = document.getElementById('density-value');
+
+  btnPlay.addEventListener('click', function() {
+    running = !running;
+    if (running) {
+      btnPlay.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pause';
+      statusLabel.textContent = 'streaming';
+    } else {
+      btnPlay.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg> Play';
+      statusLabel.textContent = 'paused';
+    }
+  });
+
+  btnReset.addEventListener('click', function() {
+    for (var i = 0; i < drops.length; i++) {
+      drops[i].y = 0;
+    }
+    running = true;
+    btnPlay.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pause';
+    statusLabel.textContent = 'streaming';
+  });
+
+  speedSlider.addEventListener('input', function() {
+    speed = parseInt(this.value);
+    speedValue.textContent = speed;
+  });
+
+  densitySlider.addEventListener('input', function() {
+    density = parseInt(this.value);
+    densityValue.textContent = density;
+    fontSize = getFontSize();
+    resize();
+  });
+})();
+</script>
+</body>
+</html>
